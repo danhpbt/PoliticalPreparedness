@@ -10,9 +10,60 @@
         android:layout_height="match_parent"
         tools:context="com.example.android.politicalpreparedness.MainActivity">
 
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gl_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.5" />
+
         <!-- TODO: Add Upcoming Election Recycler and Header -->
+        <TextView
+            android:id="@+id/tv_election_name"
+            style="@style/TextAppearance.AppCompat.Large"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimaryDark"
+            android:padding="8dp"
+            android:text="@string/str_upcoming_election"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_elections"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/gl_vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_election_name" />
 
         <!-- TODO: Add Saved Election Recycler and Header -->
+        <TextView
+            android:id="@+id/tv_saved_elections"
+            style="@style/TextAppearance.AppCompat.Large"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimaryDark"
+            android:padding="8dp"
+            android:text="@string/str_saved_election"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/gl_vertical" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_saved_elections"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_saved_elections" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
