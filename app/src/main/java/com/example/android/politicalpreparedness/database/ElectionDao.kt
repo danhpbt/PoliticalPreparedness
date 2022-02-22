@@ -40,7 +40,7 @@ interface ElectionDao {
     @Query("""
             SELECT * FROM election_table WHERE id in (
             SELECT * FROM followed_election_table
-            ) 
+            )
             ORDER BY electionDay DESC
             """)
     fun getFollowedElections(): LiveData<List<Election>>

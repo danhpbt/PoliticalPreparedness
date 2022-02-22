@@ -23,4 +23,8 @@
     <string name="str_use_my_location">Use my location</string>
     <string name="str_my_representatives">My Representatives</string>
 
+    <string name="str_position">Position</string>
+    <string name="str_name">Name</string>
+    <string name="str_party">Party</string>
+
 </resources>

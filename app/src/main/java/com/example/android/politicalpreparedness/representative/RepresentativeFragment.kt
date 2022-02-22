@@ -7,28 +7,37 @@ import android.os.Bundle
 import android.view.*
 import android.view.inputmethod.InputMethodManager
 import androidx.fragment.app.Fragment
+import com.example.android.politicalpreparedness.base.BaseFragment
+import com.example.android.politicalpreparedness.databinding.FragmentLaunchBinding
+import com.example.android.politicalpreparedness.election.VoterInfoViewModel
 import com.example.android.politicalpreparedness.network.models.Address
+import org.koin.android.ext.android.inject
 import java.util.Locale
 
-class DetailFragment : Fragment() {
+class DetailFragment : BaseFragment() {
 
     companion object {
         //TODO: Add Constant for Location request
     }
 
     //TODO: Declare ViewModel
+    override val _viewModel: RepresentativeViewModel by inject()
 
     override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
 
         //TODO: Establish bindings
+        val binding = FragmentLaunchBinding.inflate(inflater)
+        binding.lifecycleOwner = this
 
         //TODO: Define and assign Representative adapter
 
         //TODO: Populate Representative adapter
 
         //TODO: Establish button listeners for field and location search
+
+        return binding.root
 
     }
 
@@ -48,6 +57,9 @@ class DetailFragment : Fragment() {
 
     private fun isPermissionGranted() : Boolean {
         //TODO: Check if permission is already granted and return (true = granted, false = denied/other)
+
+        //pbtdanh
+        return true
     }
 
     private fun getLocation() {
