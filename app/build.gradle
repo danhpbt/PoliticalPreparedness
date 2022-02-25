@@ -91,4 +91,9 @@ dependencies {
 
     //Timber
     implementation "com.jakewharton.timber:timber:$version_timber"
+
+    //pbtdanh add to debug log
+    //implementation "com.squareup.okhttp3:logging-interceptor:$version_logging_interceptor"
+
+
 }

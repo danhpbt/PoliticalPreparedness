@@ -3,6 +3,7 @@ package com.example.android.politicalpreparedness.network
 import com.example.android.politicalpreparedness.BuildConfig
 import com.example.android.politicalpreparedness.network.CivicsHttpClient.Companion.API_KEY
 import okhttp3.OkHttpClient
+import java.util.concurrent.TimeUnit
 
 class CivicsHttpClient: OkHttpClient() {
 
@@ -12,6 +13,9 @@ class CivicsHttpClient: OkHttpClient() {
 
         fun getClient(): OkHttpClient {
             return Builder()
+                    .connectTimeout(30, TimeUnit.SECONDS)
+                    .readTimeout(30, TimeUnit.SECONDS)
+                    .writeTimeout(30, TimeUnit.SECONDS)
                     .addInterceptor { chain ->
                         val original = chain.request()
                         val url = original
