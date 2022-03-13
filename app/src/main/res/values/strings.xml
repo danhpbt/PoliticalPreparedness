@@ -27,4 +27,11 @@
     <string name="str_name">Name</string>
     <string name="str_party">Party</string>
 
+    <string name="str_no_data">No Data</string>
+    <string name="str_network_error">Network Error</string>
+    <string name="str_check_connection">Network Error. Please check your internet.</string>
+
+    <string name="str_state_correspondence">State Correspondence</string>
+
+
 </resources>
