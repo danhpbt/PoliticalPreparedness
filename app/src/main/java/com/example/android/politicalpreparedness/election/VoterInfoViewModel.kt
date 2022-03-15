@@ -21,12 +21,6 @@ class VoterInfoViewModel(application: Application,
     private val _voterInfo = MutableLiveData<VoterInfoResponse>()
     val voterInfo: LiveData<VoterInfoResponse> = _voterInfo
 
-//    private val _networkError = MutableLiveData<Boolean>()
-//    val networkError: LiveData<Boolean> = _networkError
-//
-//    private val _hasVoterInfo = MutableLiveData<Boolean>()
-//    val hasVoterInfo: LiveData<Boolean> = _hasVoterInfo
-
     private val _correspondenceAddress = MutableLiveData<String>()
     val correspondenceAddress: LiveData<String> = _correspondenceAddress
 
@@ -48,10 +42,11 @@ class VoterInfoViewModel(application: Application,
     private val _errorInfo = MutableLiveData<String>()
     val errorInfo: LiveData<String> = _errorInfo
 
+    private lateinit var _navArgs: VoterInfoFragmentArgs
     fun getElectionInfo(navArgs: VoterInfoFragmentArgs)
     {
+        _navArgs = navArgs
         populateVoterInfo(navArgs)
-        //checkFollowingElection(navArgs)
     }
 
     //TODO: Add var and methods to populate voter info
@@ -59,9 +54,9 @@ class VoterInfoViewModel(application: Application,
         val country = navArgs.argDivision.country
         val state = navArgs.argDivision.state
 
-        if (state.isNotEmpty()) {
-            showLoading.value = true
+        showLoading.value = true
 
+        if (state.isNotEmpty()) {
             viewModelScope.launch {
                 val electionId = navArgs.argElectionId
                 val address = "$country,$state"
@@ -70,7 +65,6 @@ class VoterInfoViewModel(application: Application,
                     _voterInfo.value = result
                     getCorrespondenceAddress()
                     checkFollowingElection(navArgs)
-                    _hasError.value = true
                 } else {
                     _hasError.value = true
                     showSnackBarInt.value = R.string.str_check_connection
@@ -78,11 +72,13 @@ class VoterInfoViewModel(application: Application,
                 }
             }
 
-            showLoading.value = false
         } else {
             _hasError.value = true
+            showSnackBarInt.value = R.string.str_voter_info_error
             _errorInfo.value = getString(R.string.str_no_data)
         }
+
+        showLoading.value = false
     }
 
     //TODO: Add var and methods to support loading URLs
@@ -120,6 +116,16 @@ class VoterInfoViewModel(application: Application,
     private fun checkFollowingElection(navArgs: VoterInfoFragmentArgs) {
         viewModelScope.launch {
             _isElectionFollowed.value = repository.isElectionFollowed(navArgs.argElectionId)
+        }
+    }
+
+    fun toggleFollowElection() {
+        viewModelScope.launch {
+            when (_isElectionFollowed.value) {
+                true -> repository.unfollowElection(_navArgs.argElectionId)
+                false -> repository.followElection(_navArgs.argElectionId)
+            }
+            _isElectionFollowed.value = !_isElectionFollowed.value!!
         }
     }
 

@@ -12,6 +12,7 @@
     <string name="str_voting_location">Voting Location</string>
     <string name="str_ballot_information">Ballot Information</string>
     <string name="str_follow_election">Follow Election</string>
+    <string name="str_unfollow_election">Unfollow Election</string>
 
     <string name="str_political_preparedness">Political Preparedness</string>
     <string name="str_representative_search">Representative Search</string>
@@ -27,7 +28,8 @@
     <string name="str_name">Name</string>
     <string name="str_party">Party</string>
 
-    <string name="str_no_data">No Data</string>
+    <string name="str_no_data">No Information</string>
+    <string name="str_voter_info_error">No information for this election.</string>
     <string name="str_network_error">Network Error</string>
     <string name="str_check_connection">Network Error. Please check your internet.</string>
 
