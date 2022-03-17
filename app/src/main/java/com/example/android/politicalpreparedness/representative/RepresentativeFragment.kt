@@ -98,7 +98,6 @@ class DetailFragment : BaseFragment() {
 
         }
 
-
         return binding.root
 
     }
@@ -180,7 +179,11 @@ class DetailFragment : BaseFragment() {
         val geocoder = Geocoder(context, Locale.getDefault())
         return geocoder.getFromLocation(location.latitude, location.longitude, 1)
                 .map { address ->
-                    Address(address.thoroughfare, address.subThoroughfare, address.locality, address.adminArea, address.postalCode)
+                    Address(address.thoroughfare,
+                        address.subThoroughfare,
+                        address.locality,
+                        address.adminArea,
+                        address.postalCode)
                 }
                 .first()
     }
