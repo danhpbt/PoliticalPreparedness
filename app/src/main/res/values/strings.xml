@@ -35,5 +35,7 @@
 
     <string name="str_state_correspondence">State Correspondence</string>
 
+    <string name="str_permission_denied">Location permission was not granted.</string>
+    <string name="str_settings">Settings</string>
 
 </resources>

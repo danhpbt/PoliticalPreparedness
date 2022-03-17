@@ -6,6 +6,7 @@ import com.example.android.politicalpreparedness.database.ElectionDatabase
 import com.example.android.politicalpreparedness.election.ElectionsViewModel
 import com.example.android.politicalpreparedness.election.VoterInfoViewModel
 import com.example.android.politicalpreparedness.repository.CivicRepository
+import com.example.android.politicalpreparedness.representative.RepresentativeViewModel
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.context.startKoin
@@ -36,6 +37,12 @@ class MainApplication : Application()  {
                 VoterInfoViewModel(
                     get(),
                     get() as CivicRepository
+                )
+            }
+
+            viewModel {
+                RepresentativeViewModel(
+                    get()
                 )
             }
 
