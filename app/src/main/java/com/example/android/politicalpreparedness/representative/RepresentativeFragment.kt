@@ -29,6 +29,7 @@ import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.material.snackbar.Snackbar
 import org.koin.android.ext.android.inject
+import timber.log.Timber
 import java.util.Locale
 
 class DetailFragment : BaseFragment() {
@@ -74,7 +75,7 @@ class DetailFragment : BaseFragment() {
         }
 
         binding.buttonLocation.setOnClickListener {
-            if (checkLocationPermissions()) {
+            if (isPermissionGranted()) {
                 getLocation()
             } else {
                 requestLocationPermission()
@@ -102,44 +103,25 @@ class DetailFragment : BaseFragment() {
 
     }
 
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         //TODO: Handle location permission result to get location on permission granted
-        when (requestCode) {
-            REQUEST_ACCESS_FINE_LOCATION -> {
-                if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    getLocation()
-                }
-                else {
-                    if (shouldShowRequestPermissionRationale(Manifest.permission.ACCESS_FINE_LOCATION)) {
-                        Snackbar.make(this.view!!, R.string.str_permission_denied, Snackbar.LENGTH_LONG)
-                            .setAction(R.string.str_settings) {
-                                startActivity(Intent().apply {
-                                    action = Settings.ACTION_APPLICATION_DETAILS_SETTINGS
-                                    data = Uri.fromParts("package", BuildConfig.APPLICATION_ID, null)
-                                    flags = Intent.FLAG_ACTIVITY_NEW_TASK
-                                })
-                            }
-                            .show()
-                    } else {
-                        requestLocationPermission()
-                    }
-                }
-                return
-            }
-            else -> {
-            }
+        if (requestCode == REQUEST_ACCESS_FINE_LOCATION && grantResults.isNotEmpty() &&
+            grantResults[0] == PackageManager.PERMISSION_GRANTED)
+        {
+            getLocation()
         }
-
-    }
-
-    private fun checkLocationPermissions(): Boolean {
-        return if (isPermissionGranted()) {
-            true
-        } else {
-            //TODO: Request Location permissions
-            requestLocationPermission()
-            false
+        else {
+            if (shouldShowRequestPermissionRationale(Manifest.permission.ACCESS_FINE_LOCATION)) {
+                Snackbar.make(this.view!!, R.string.str_permission_denied, Snackbar.LENGTH_LONG)
+                    .setAction(android.R.string.ok) {
+                        Timber.d("User denied location permission")
+                    }.show()
+            }
         }
     }
 
@@ -167,10 +149,12 @@ class DetailFragment : BaseFragment() {
     }
 
     private fun requestLocationPermission() {
-        ActivityCompat.requestPermissions(
-            requireActivity(),
-            arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
-            REQUEST_ACCESS_FINE_LOCATION
+        val permissionsArray = arrayOf(Manifest.permission.ACCESS_FINE_LOCATION)
+        val resultCode = REQUEST_ACCESS_FINE_LOCATION
+
+        requestPermissions(
+            permissionsArray,
+            resultCode
         )
     }
 
