@@ -22,7 +22,6 @@
             android:id="@+id/search_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="8dp"
             app:layout_constraintBottom_toTopOf="@id/representatives_layout"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -32,6 +31,8 @@
                 style="@style/TextAppearance.AppCompat.Large"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
                 android:text="@string/str_representative_search"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -43,10 +44,13 @@
                 android:id="@+id/address_line_1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
                 android:autofillHints=""
                 android:hint="@string/str_address_line1"
                 android:inputType="textPostalAddress"
                 android:text="@={viewModel.address.line1}"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/search_title" />
 
@@ -56,10 +60,13 @@
                 android:id="@+id/address_line_2"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
                 android:autofillHints=""
                 android:hint="@string/str_address_line2"
                 android:inputType="textPostalAddress"
                 android:text="@={viewModel.address.line2}"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/address_line_1" />
 
@@ -69,6 +76,8 @@
                 android:id="@+id/city"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
                 android:autofillHints=""
                 android:hint="@string/str_city"
                 android:inputType="textPostalAddress"
@@ -84,6 +93,8 @@
                 android:id="@+id/state"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
                 android:autofillHints="aaaa"
                 android:entries="@array/states"
                 android:inputType="textPostalAddress"
@@ -99,6 +110,7 @@
                 android:id="@+id/zip"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
                 android:autofillHints=""
                 android:hint="@string/str_zip"
                 android:inputType="number"
@@ -114,7 +126,11 @@
                 style="@style/Widget.AppCompat.Button.Colored"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
                 android:text="@string/str_fnd_my_representatives"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/zip" />
 
             <!-- TODO: Add visual styling and content -->
@@ -123,10 +139,13 @@
                 style="@style/Widget.AppCompat.Button.Colored"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
                 android:text="@string/str_use_my_location"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/button_search"
-                motion:layout_editor_absoluteX="8dp" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/button_search" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -134,7 +153,6 @@
             android:id="@+id/representatives_layout"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:padding="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/search_layout">
@@ -145,6 +163,8 @@
                 style="@style/TextAppearance.AppCompat.Large"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
                 android:text="@string/str_my_representatives"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
